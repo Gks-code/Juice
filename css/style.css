@@ -1,0 +1,527 @@
+:root {
+    --primary-color: #d82057;
+    /* Juicy */
+    --secondary-color: #5c2a9d;
+    /* Berry */
+    --tertiary-color: #ffb300;
+    /* Zest */
+    --quaternary-color: #00bcd4;
+    /* Pure */
+
+    --text-color: #ffffff;
+    --font-main: 'DM Sans', sans-serif;
+    --font-logo: 'Dancing Script', cursive;
+
+    --transition-smooth: cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    overscroll-behavior: none;
+    height: 100%;
+}
+
+body {
+    background-color: #f43f5e;
+    /* Default to first product color */
+    color: var(--text-color);
+    font-family: var(--font-main);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Header - Premium Look */
+.main-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 2.5rem 5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    transition: padding 0.5s var(--transition-smooth), background 0.5s;
+}
+
+.logo {
+    font-family: var(--font-logo);
+    font-size: 2.2rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    z-index: 101;
+    text-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Desktop Nav */
+.desktop-nav {
+    display: flex;
+    gap: 2.5rem;
+    align-items: center;
+}
+
+.desktop-nav a.nav-link {
+    color: rgba(255, 255, 255, 0.85);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s, transform 0.3s;
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.desktop-nav a.nav-link:hover {
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+.btn-pill {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 0.8rem 2rem;
+    border-radius: 50px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    white-space: nowrap;
+    text-decoration: none;
+    color: white;
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.btn-pill:hover {
+    background: white;
+    color: black;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(255, 255, 255, 0.3);
+}
+
+/* Hamburger & Mobile Nav */
+.hamburger-btn {
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 101;
+    padding: 10px;
+}
+
+.hamburger-btn span {
+    width: 32px;
+    height: 2px;
+    background-color: white;
+    transition: 0.3s;
+}
+
+.hamburger-btn.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 6px);
+}
+
+.hamburger-btn.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger-btn.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -6px);
+}
+
+.mobile-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(10, 10, 10, 0.98);
+    backdrop-filter: blur(15px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2.5rem;
+    z-index: 100;
+    transform: translateY(-100%);
+    transition: transform 0.6s cubic-bezier(0.7, 0, 0.3, 1);
+}
+
+.mobile-nav.open {
+    transform: translateY(0);
+}
+
+.mobile-nav a {
+    font-size: 2rem;
+    color: white;
+    text-decoration: none;
+    font-weight: 700;
+    font-family: var(--font-logo);
+    /* Adding personality to mobile menu */
+    letter-spacing: 2px;
+}
+
+/* Product Showcase */
+.product-showcase {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 1000px;
+}
+
+.bg-layer {
+    position: fixed;
+    /* Fixed to cover 100% of screen always (kills pink bar) */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, var(--primary-color) 0%, #1a050b 80%);
+    z-index: -10;
+    /* Very back */
+    will-change: background;
+}
+
+/* Big Text Background */
+.big-text-container {
+    position: fixed;
+    /* Fixed to stay centered behind content */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    z-index: -5;
+    /* Behind content, in front of BG */
+    pointer-events: none;
+    mix-blend-mode: overlay;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.big-text {
+    font-size: 18rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.2);
+    /* Sutilmente mais visível */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+    opacity: 0;
+    will-change: transform, opacity;
+    letter-spacing: -5px;
+    mix-blend-mode: overlay;
+    /* Mantém o blend mode */
+}
+
+/* Center Content Grid (Desktop) */
+.center-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    max-width: 1200px;
+    height: 80vh;
+    position: relative;
+    z-index: 10;
+}
+
+/* Bottle Styling */
+.bottle-container {
+    grid-column: 2;
+    z-index: 10;
+    position: relative;
+    width: 100%;
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bottle-img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    height: 90%;
+    /* Larger */
+    width: auto;
+    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.6));
+    will-change: transform, opacity;
+}
+
+/* Info Styling */
+.info-container {
+    grid-column: 1 / span 1;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    z-index: 20;
+    /* Ensure text is always on top */
+}
+
+.info-slide {
+    position: absolute;
+    left: 10%;
+    /* More padding */
+    width: 400px;
+    opacity: 0;
+    will-change: transform, opacity;
+}
+
+.main-title {
+    font-size: 4.5rem;
+    line-height: 0.9;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    text-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    letter-spacing: -2px;
+}
+
+.description {
+    font-size: 1.15rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    max-width: 350px;
+    font-weight: 400;
+    opacity: 0.9;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.price {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-top: 1rem;
+    display: inline-block;
+    border-bottom: 3px solid rgba(255, 255, 255, 0.3);
+    padding-bottom: 5px;
+}
+
+.size-selector {
+    display: flex;
+    gap: 15px;
+    margin-top: 2rem;
+    pointer-events: auto;
+    /* Enable clicks */
+}
+
+.size {
+    font-size: 0.9rem;
+    opacity: 0.5;
+    padding: 8px 18px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 30px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-weight: 600;
+}
+
+.size:hover {
+    opacity: 1;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.size.active {
+    opacity: 1;
+    background: white;
+    color: black;
+    border-color: white;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.scroll-spacer {
+    height: 300vh;
+    /* More height for slower scroll */
+    width: 100%;
+}
+
+/* Scroll Hint */
+.scroll-hint {
+    position: absolute;
+    bottom: 3rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 50;
+}
+
+.mouse-icon {
+    width: 26px;
+    height: 42px;
+    border: 2px solid rgba(255, 255, 255, 0.7);
+    border-radius: 15px;
+    position: relative;
+    margin-bottom: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.wheel {
+    width: 3px;
+    height: 6px;
+    background: white;
+    border-radius: 2px;
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: scrollWheel 1.5s infinite cubic-bezier(0.45, 0, 0.55, 1);
+}
+
+.arrow-down {
+    width: 12px;
+    height: 12px;
+    border-right: 2px solid rgba(255, 255, 255, 0.7);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.7);
+    transform: rotate(45deg);
+    animation: arrowBounce 1.5s infinite;
+}
+
+@keyframes scrollWheel {
+    0% {
+        top: 8px;
+        opacity: 1;
+    }
+
+    100% {
+        top: 24px;
+        opacity: 0;
+    }
+}
+
+@keyframes arrowBounce {
+
+    0%,
+    100% {
+        transform: rotate(45deg) translateY(0);
+        opacity: 0.5;
+    }
+
+    50% {
+        transform: rotate(45deg) translateY(5px);
+        opacity: 1;
+    }
+}
+
+/* --- MOBILE RESPONSIVENESS --- */
+@media (max-width: 900px) {
+    .main-header {
+        padding: 1.5rem 2rem;
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), transparent);
+        /* Garante legibilidade e evita aspecto "rosa chapado" no topo */
+    }
+
+    .desktop-nav {
+        display: none;
+    }
+
+    .hamburger-btn {
+        display: flex;
+    }
+
+    .center-content {
+        grid-template-columns: 1fr;
+        grid-template-rows: 45% 55%;
+        /* More space for bottle */
+        height: 100%;
+        padding-top: 70px;
+        max-width: 100%;
+    }
+
+    .bottle-container {
+        grid-column: 1;
+        grid-row: 1;
+        height: 100%;
+        align-self: center;
+        padding-bottom: 0;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+    }
+
+    .bottle-img {
+        height: auto;
+        max-height: 85%;
+        /* Slightly smaller to fit better */
+        max-width: 70%;
+        filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.5));
+        /* Softer shadow on mobile */
+    }
+
+    .info-container {
+        grid-column: 1;
+        grid-row: 2;
+        width: 100%;
+        height: 100%;
+        align-items: flex-start;
+        justify-content: center;
+        text-align: center;
+        padding-top: 2rem;
+    }
+
+    .info-slide {
+        position: absolute;
+        width: 90%;
+        left: 50%;
+        top: 0;
+        transform: translateX(-50%);
+        padding-left: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .main-title {
+        font-size: 3.5rem;
+        /* Larger title */
+        margin-bottom: 0.5rem;
+        line-height: 1;
+    }
+
+    .description {
+        margin: 0 auto 1.5rem auto;
+        font-size: 1.1rem;
+        max-width: 90%;
+        line-height: 1.4;
+    }
+
+    .price {
+        font-size: 2.2rem;
+        margin-top: 0;
+        margin-bottom: 1.5rem;
+    }
+
+    .size-selector {
+        justify-content: center;
+        margin-top: 0;
+    }
+
+    /* Adjust Big Text for mobile so it doesn't overwhelm */
+    .big-text {
+        font-size: 25vw;
+        /* Responsive font size */
+        top: 40%;
+        /* Move up slightly */
+    }
+}

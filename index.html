@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#000000">
+    <title>Juice Project - GSAP Demo</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;500;700&family=Dancing+Script:wght@700&display=swap"
+        rel="stylesheet">
+
+    <!-- Preload Critical Image -->
+    <link rel="preload" as="image" href="assets/images/product1.png">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- Header fixo -->
+    <header class="main-header">
+        <div class="logo">Juice</div>
+        <nav class="desktop-nav">
+            <!-- Novos botões solicitados -->
+            <a href="#" class="nav-link">Especificações</a>
+            <a href="#" class="nav-link">Suporte</a>
+            <a href="#" class="btn-pill">Comprar Agora</a>
+        </nav>
+
+        <!-- Menu Hamburger (Mobile) -->
+        <button class="hamburger-btn" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <!-- Container Menu Mobile -->
+        <div class="mobile-nav">
+            <a href="#">Especificações</a>
+            <a href="#">Suporte</a>
+            <a href="#" class="btn-pill">Comprar Agora</a>
+        </div>
+    </header>
+
+    <!-- Container Principal com Efeito de Scroll -->
+    <main id="smooth-wrapper">
+        <div id="smooth-content">
+
+            <!-- Seção Fixa (Pinned) -->
+            <section class="product-showcase">
+
+                <!-- Background que muda de cor -->
+                <div class="bg-layer"></div>
+
+                <!-- Elementos Centrais -->
+                <div class="big-text-container">
+                    <h2 class="big-text product-1-text">JUICY</h2>
+                    <h2 class="big-text product-2-text">JUICY</h2>
+                    <h2 class="big-text product-3-text">JUICY</h2>
+                    <h2 class="big-text product-4-text">JUICY</h2>
+                </div>
+
+                <div class="center-content">
+
+
+
+                    <!-- Imagem da Garrafa -->
+                    <!-- Imagens das Garrafas (Sobrepostas) -->
+                    <div class="bottle-container">
+                        <!-- Product 1 (Visible initially) -->
+                        <img src="assets/images/product1.png" alt="Juicy" class="bottle-img bottle-1"
+                            style="z-index: 4;">
+
+                        <!-- Others (Hidden initially) -->
+                        <img src="assets/images/product2.png" alt="Berry" class="bottle-img bottle-2"
+                            style="z-index: 3; opacity: 0; transform: scale(0.8) rotate(15deg);">
+                        <img src="assets/images/product3.png" alt="Zest" class="bottle-img bottle-3"
+                            style="z-index: 2; opacity: 0; transform: scale(0.8) rotate(15deg);">
+                        <img src="assets/images/product4.png" alt="Pure" class="bottle-img bottle-4"
+                            style="z-index: 1; opacity: 0; transform: scale(0.8) rotate(15deg);">
+                    </div>
+
+                    <!-- Informações do Produto (Texto Frente) -->
+                    <div class="info-container">
+                        <div class="info-slide product-1-info active">
+                            <h1 class="main-title">Berry Burst</h1>
+                            <p class="description">Uma explosão doce e vibrante de frutas vermelhas para energizar seu
+                                dia.</p>
+                            <div class="price">R$ 12,50</div>
+                            <div class="size-selector">
+                                <span class="size active">500ml</span>
+                                <span class="size">300ml</span>
+                                <span class="size">100ml</span>
+                            </div>
+                        </div>
+
+                        <!-- Clonando estrutura para outros produtos (será controlado via JS) -->
+                        <div class="info-slide product-2-info">
+                            <h1 class="main-title">Zest Citrus</h1>
+                            <p class="description">Refrescância cítrica intensa com um toque tropical de abacaxi.</p>
+                            <div class="price">R$ 14,00</div>
+                            <div class="size-selector">
+                                <span class="size active">500ml</span>
+                                <span class="size">300ml</span>
+                                <span class="size">100ml</span>
+                            </div>
+                        </div>
+
+                        <div class="info-slide product-3-info">
+                            <h1 class="main-title">Pure Harmony</h1>
+                            <p class="description">O equilíbrio perfeito da natureza em cada gole, suave e relaxante.
+                            </p>
+                            <div class="price">R$ 11,50</div>
+                            <div class="size-selector">
+                                <span class="size active">500ml</span>
+                                <span class="size">300ml</span>
+                                <span class="size">100ml</span>
+                            </div>
+                        </div>
+
+                        <div class="info-slide product-4-info">
+                            <h1 class="main-title">Super Juicy</h1>
+                            <p class="description">O poder verde do detox com pepino, limão e hortelã fresca.</p>
+                            <div class="price">R$ 13,00</div>
+                            <div class="size-selector">
+                                <span class="size active">500ml</span>
+                                <span class="size">300ml</span>
+                                <span class="size">100ml</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Scroll Hint Animation (Missing in original) -->
+                <div class="scroll-hint">
+                    <div class="mouse-icon">
+                        <div class="wheel"></div>
+                    </div>
+                    <div class="arrow-down"></div>
+                </div>
+
+            </section>
+
+            <!-- Espaçamento para o ScrollTrigger (Scroll Virtual) -->
+            <div class="scroll-spacer"></div>
+
+        </div>
+    </main>
+
+    <!-- GSAP Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Observer.min.js"></script>
+
+    <!-- Main Script -->
+    <script src="js/script.js?v=2"></script>
+</body>
+
+</html>
