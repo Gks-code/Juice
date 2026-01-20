@@ -50,7 +50,125 @@ body {
     transition: padding 0.5s var(--transition-smooth), background 0.5s;
 }
 
-/* ... existing styles ... */
+
+.logo {
+    font-family: var(--font-logo);
+    font-size: 2.2rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    z-index: 101;
+    text-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Desktop Nav */
+.desktop-nav {
+    display: flex;
+    gap: 2.5rem;
+    align-items: center;
+}
+
+.desktop-nav a.nav-link {
+    color: rgba(255, 255, 255, 0.85);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s, transform 0.3s;
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.desktop-nav a.nav-link:hover {
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+.btn-pill {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 0.8rem 2rem;
+    border-radius: 50px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    white-space: nowrap;
+    text-decoration: none;
+    color: white;
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.btn-pill:hover {
+    background: white;
+    color: black;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(255, 255, 255, 0.3);
+}
+
+/* Hamburger & Mobile Nav */
+.hamburger-btn {
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 101;
+    padding: 10px;
+}
+
+.hamburger-btn span {
+    width: 32px;
+    height: 2px;
+    background-color: white;
+    transition: 0.3s;
+}
+
+.hamburger-btn.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 6px);
+}
+
+.hamburger-btn.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger-btn.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -6px);
+}
+
+.mobile-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(10, 10, 10, 0.98);
+    backdrop-filter: blur(15px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2.5rem;
+    z-index: 100;
+    transform: translateY(-100%);
+    transition: transform 0.6s cubic-bezier(0.7, 0, 0.3, 1);
+}
+
+.mobile-nav.open {
+    transform: translateY(0);
+}
+
+.mobile-nav a {
+    font-size: 2rem;
+    color: white;
+    text-decoration: none;
+    font-weight: 700;
+    font-family: var(--font-logo);
+    /* Adding personality to mobile menu */
+    letter-spacing: 2px;
+}
+
 /* Product Showcase */
 .product-showcase {
     position: relative;
